@@ -1,0 +1,24 @@
+.TH SIMPLE_SHELL 1 "December 2025" "Version 1.0" "User Commands"
+.SH NAME
+_Simple_Shell \- The "Holberton special" Simple shell project that is meant to tax our brains
+.SH SYNOPSIS
+
+.SH DESCRIPTION
+Edit as needed 
+
+.TP
+.B It currently supports the following features:
+
+f1 - Prints out..........
+
+.SH IMPLEMENTATION
+.TP
+The way to use this function, basically works exactly the same way you would use printf().
+
+
+.SH AUTHOR
+Written by Andrew Kasapidis and Pavith Raj
+
+.SH SEE ALSO
+printf(3)
+
