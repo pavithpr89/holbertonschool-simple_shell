@@ -60,7 +60,6 @@ int main(void)
 		}
 		token = strtok(NULL, " \t\n");
 	}
-}
 
 free(line);
 	return (0);
