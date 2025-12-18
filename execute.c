@@ -16,6 +16,10 @@ void execute_command(char *line)
 	while (argv[i])
 		argv[++i] = strtok(NULL, " ");
 
+	/* IMPORTANT FIX: ignore empty or space-only input */
+	if (argv[0] == NULL)
+		return;
+
 	pid = fork();
 	if (pid == -1)
 	{
