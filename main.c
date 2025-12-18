@@ -35,8 +35,8 @@ int main(void)
 
 		token = strtok(line, " \t\n");
 		while (token != NULL)
-
-			child_pid = fork();
+		{
+		child_pid = fork();
 		if (child_pid == -1)
 		{
 			perror("fork");
@@ -59,6 +59,7 @@ int main(void)
 			wait(&status);
 		}
 		token = strtok(NULL, " \t\n");
+		}
 	}
 
 free(line);
