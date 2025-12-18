@@ -15,6 +15,7 @@ int main(void)
 	pid_t child_pid;
 	int status;
 	char *argv[2];
+	extern char **environ;
 
 	while (1)
 	{
