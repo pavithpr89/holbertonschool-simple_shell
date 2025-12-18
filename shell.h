@@ -1,6 +1,11 @@
 #ifndef SHELL_H
 #define SHELL_H
+
 #include <stdio.h>
+
+#include <stddef.h> // added this
+
+
 #include <unistd.h>
 #include <stdlib.h>
 #include <sys/wait.h>
@@ -8,6 +13,13 @@
 #include <unistd.h>
 #include <string.h>
 
-int main(void);
+extern char **environ;
 
-#endif
+void execute_command(char *line);
+
+#endif /* SHELL_H */
+
+
+//int main(void);
+
+//#endif
