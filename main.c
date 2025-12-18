@@ -34,10 +34,9 @@ int main(void)
 		line[nchar - 1] = '\0';
 
 		token = strtok(line, " \t\n");
-		if (!token)
-			continue;
+		while (token != NULL)
 
-		child_pid = fork();
+			child_pid = fork();
 		if (child_pid == -1)
 		{
 			perror("fork");
@@ -47,7 +46,7 @@ int main(void)
 
 		if (child_pid == 0)
 		{
-			argv[0] = line;
+			argv[0] = token;
 			argv[1] = NULL;
 			if (execve(argv[0], argv, environ) == -1)
 			{
@@ -59,8 +58,10 @@ int main(void)
 		{
 			wait(&status);
 		}
+		token = strtok(NULL, " \t\n");
 	}
+}
 
-	free(line);
+free(line);
 	return (0);
 }
