@@ -45,7 +45,7 @@ int main(void)
 		{
 			argv[0] = line;
 			argv[1] = NULL;
-			if (execve(argv[0], argv, NULL) == -1)
+			if (execve(argv[0], argv, environ) == -1)
 			{
 				perror("Error");
 				exit(EXIT_FAILURE);
