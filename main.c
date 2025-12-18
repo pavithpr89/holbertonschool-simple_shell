@@ -25,7 +25,8 @@ int main(void)
 		nchar = getline(&line, &len, stdin);
 		if (nchar == -1)
 		{
-			putchar('\n');
+			if (isatty(STDIN_FILENO))
+				putchar('\n');
 			break;
 		}
 		
