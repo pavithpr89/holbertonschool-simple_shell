@@ -16,12 +16,13 @@ int main(void)
 	int status;
 	char *argv[2];
 	extern char **environ;
+	char *token;
 
 	while (1)
 	{
 		if (isatty(STDIN_FILENO))
 			printf("($) ");
-		
+
 		nchar = getline(&line, &len, stdin);
 		if (nchar == -1)
 		{
@@ -29,10 +30,11 @@ int main(void)
 				putchar('\n');
 			break;
 		}
-		
+
 		line[nchar - 1] = '\0';
 
-		if (line[0] == '\0')
+		token = strtok(line, " \t\n");
+		if (!token)
 			continue;
 
 		child_pid = fork();
