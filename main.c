@@ -1,6 +1,7 @@
 #include "shell.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 int main(void)
 {
@@ -10,12 +11,14 @@ int main(void)
 
 	while (1)
 	{
-		printf("($) ");
-		nchar = getline(&line, &len, stdin);
+		if (isatty(STDIN_FILENO))
+			printf("($) ");
 
+		nchar = getline(&line, &len, stdin);
 		if (nchar == -1)
 		{
-			printf("\n");
+			if (isatty(STDIN_FILENO))
+				printf("\n");
 			break;
 		}
 
