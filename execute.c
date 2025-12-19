@@ -11,7 +11,6 @@ void execute_command(char *line)
 	int status;
 	char *argv[64];
 	int i = 0;
-	char *cmd_path;
 
 	argv[i] = strtok(line, " ");
 	while (argv[i])
@@ -29,7 +28,7 @@ void execute_command(char *line)
 	}
 	if (pid == 0)
 	{
-		cmd_path = find_command(argv[0]);
+		char *cmd_path = find_command(argv[0]);
 		if (!cmd_path)
 		{
 			fprintf(stderr, "./hsh: 1: %s: not found\n", argv[0]);
