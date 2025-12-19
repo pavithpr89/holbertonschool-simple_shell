@@ -40,6 +40,12 @@ void execute_command(char *line)
 	}
 	else
 	{
-		wait(&status);
+		int wstatus;
+		wait(&wstatus);
+
+		if (WIFEXITED(wstatus))
+			status = WEXITSTATUS(wstatus);
+		else
+			status = 1;
 	}
 }
