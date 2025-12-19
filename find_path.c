@@ -12,6 +12,7 @@ char *find_command(char *cmd)
 
 	if (strchr(cmd, '/'))
 		return (cmd);
+
 	path = getenv("PATH");
 	if (!path || path[0] == '\0')
 		return (NULL);
@@ -19,9 +20,6 @@ char *find_command(char *cmd)
 	path_copy = strdup(path);
 	if (!path_copy)
 		return (NULL);
-
-	if (strchr(cmd, '/')) 
-		return(cmd);
 
 	else
 	{
