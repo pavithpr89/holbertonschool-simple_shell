@@ -46,10 +46,10 @@ int execute_command(char *line)
 		if (WIFEXITED(wstatus))
 		{
 			status = WEXITSTATUS(wstatus);
-			return (status);
 		}
 		else
 			status = 1;
 		return (status);
 	}
+	return (1);
 }
