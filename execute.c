@@ -47,5 +47,6 @@ void execute_command(char *line)
 			status = WEXITSTATUS(wstatus);
 		else
 			status = 1;
+		return (status);
 	}
 }
