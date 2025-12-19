@@ -10,6 +10,7 @@ int main(void)
 	char *line = NULL;
 	size_t len = 0;
 	ssize_t nchar;
+	int status = 0;
 
 	while (1)
 	{
@@ -28,9 +29,9 @@ int main(void)
 			line[nchar - 1] = '\0';
 
 		if (*line)
-			execute_command(line);
+			status = execute_command(line);
 	}
 
 	free(line);
-	return (0);
+	return (status);
 }
