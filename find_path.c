@@ -13,7 +13,7 @@ char *find_command(char *cmd)
 	if (strchr(cmd, '/'))
 		return (cmd);
 	path = getenv("PATH");
-	if (!path)
+	if (!path || path[0] == '\0')
 		return (NULL);
 
 	path_copy = strdup(path);
@@ -61,7 +61,6 @@ char *find_command(char *cmd)
 			free(path_copy);
 			return (full_path);
 		}
-		free(path_copy);
 		dir = strtok(NULL, ":");
 	}
 >>>>>>> 81794525d6a9a9cbca3fcdaf48d70236403fc4da
