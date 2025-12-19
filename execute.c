@@ -33,7 +33,7 @@ int execute_command(char *line)
 		if (!cmd_path)
 		{
 			fprintf(stderr, "./hsh: 1: %s: not found\n", argv[0]);
-			exit(0);
+			exit(127);
 		}
 		execve(cmd_path, argv, environ);
 		exit(126);
@@ -44,7 +44,10 @@ int execute_command(char *line)
 		wait(&wstatus);
 
 		if (WIFEXITED(wstatus))
+		{
 			status = WEXITSTATUS(wstatus);
+			return (status);
+		}
 		else
 			status = 1;
 		return (status);
