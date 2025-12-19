@@ -28,6 +28,13 @@ int main(void)
 		if (line[nchar - 1] == '\n')
 			line[nchar - 1] = '\0';
 
+		/*  */
+		if (strcmp(line, "exit") == 0)
+		{
+			free(line);
+			exit(status);
+		}
+		/*  */
 		if (*line)
 			status = execute_command(line);
 	}
