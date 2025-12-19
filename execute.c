@@ -33,7 +33,7 @@ int execute_command(char *line)
 		if (!cmd_path)
 		{
 			fprintf(stderr, "./hsh: 1: %s: not found\n", argv[0]);
-			exit(127);
+			return (127);
 		}
 		execve(cmd_path, argv, environ);
 		_exit(126);
