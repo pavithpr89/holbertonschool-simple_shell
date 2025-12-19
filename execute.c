@@ -1,5 +1,9 @@
 #include "shell.h"
 
+/**
+ * execute_command - executes cmd the user enters
+ * @line: - line by user
+ */
 
 void execute_command(char *line)
 {
@@ -23,25 +27,19 @@ void execute_command(char *line)
 		perror("fork");
 		return;
 	}
-
-	
 	if (pid == 0)
 	{
-	  cmd_path = find_command(argv[0]);
+		cmd_path = find_command(argv[0]);
 		if (cmd_path)
 		{
-		  execve(cmd_path, argv, environ);
-		  perror("Error");
-		  free(cmd_path);
-		  exit(EXIT_FAILURE); 
-		  
+			execve(cmd_path, argv, environ);
+			perror("Error");
+			free(cmd_path);
+			exit(EXIT_FAILURE);
 		}
-		 
-		
 	}
 	else
 	{
 		wait(&status);
-		
 	}
 }

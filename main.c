@@ -1,5 +1,9 @@
 #include "shell.h"
 
+/**
+ * main - Main function
+ * Return: 0
+ */
 
 int main(void)
 {
