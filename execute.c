@@ -24,7 +24,7 @@ int execute_command(char *line)
 	if (pid == -1)
 	{
 		perror("fork");
-		return;
+		return (0);
 	}
 	if (pid == 0)
 	{
