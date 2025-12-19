@@ -11,9 +11,11 @@ char *find_command(char *cmd)
 	char *path, *path_copy, *dir;
 
 	if (strchr(cmd, '/'))
+	{
 		if (access(cmd, X_OK) == 0)
 			return (cmd);
 		return (NULL);
+	}
 
 	path = getenv("PATH");
 	if (!path || path[0] == '\0')
