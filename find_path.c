@@ -21,30 +21,27 @@ char *find_command(char *cmd)
 	if (!path_copy)
 		return (NULL);
 
-	else
-	{
-		path = getenv("PATH");
-		if (!path || path[0] == '\0')
-			return (NULL);
-
-		path_copy = strdup(path);
-		if (!path_copy)
-			return (NULL);
-
-		dir = strtok(path_copy, ":" );
-		while (dir)
-		{
-			strcpy (full_path, dir);
-			strcat (full_path, "/");
-			strcat (full_path, cmd);
-			if(access(full_path, X_OK) == 0)
-			{
-				free(path_copy);
-				return (full_path);
-			}
-			dir = strtok(NULL, ":");
-		}
-		free(path_copy);
+	path = getenv("PATH");
+	if (!path || path[0] == '\0')
 		return (NULL);
+
+	path_copy = strdup(path);
+	if (!path_copy)
+		return (NULL);
+
+	dir = strtok(path_copy, ":" );
+	while (dir)
+	{
+		strcpy (full_path, dir);
+		strcat (full_path, "/");
+		strcat (full_path, cmd);
+		if(access(full_path, X_OK) == 0)
+		{
+			free(path_copy);
+			return (full_path);
+		}
+		dir = strtok(NULL, ":");
 	}
+	free(path_copy);
+	return (NULL);
 }
