@@ -7,7 +7,7 @@
  */
 char *find_command(char *cmd)
 {
-	char full_path[64];
+	static char full_path[64];
 	char *path, *path_copy, *dir;
 
 	if (strchr(cmd, '/'))

@@ -34,7 +34,6 @@ void execute_command(char *line)
 		{
 			execve(cmd_path, argv, environ);
 			perror("Error");
-			free(cmd_path);
 			exit(EXIT_FAILURE);
 		}
 	}
