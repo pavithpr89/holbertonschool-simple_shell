@@ -5,7 +5,7 @@
  * @line: - line by user
  */
 
-void execute_command(char *line)
+int execute_command(char *line)
 {
 	pid_t pid;
 	int status;
@@ -18,7 +18,7 @@ void execute_command(char *line)
 
 	/* IMPORTANT FIX: ignore empty or space-only input */
 	if (argv[0] == NULL)
-		return;
+		return (0);
 
 	pid = fork();
 	if (pid == -1)
