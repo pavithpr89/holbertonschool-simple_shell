@@ -20,50 +20,33 @@ char *find_command(char *cmd)
 	if (!path_copy)
 		return (NULL);
 
-<<<<<<< HEAD
-  if (strchr(cmd, '/')) 
-  {
-    
-    return(cmd);
-    
-    
-  }
+	if (strchr(cmd, '/')) 
+		return(cmd);
 
-  else
-  {
-
-    path = getenv("PATH");
-    if (!path || path[0] == '\0')
-      return (NULL);
-
-    path_copy = strdup(path);
-    if (!path_copy)
-      return (NULL);
-
-    dir = strtok(path_copy, ":" );
-    while (dir)
-    {
-      strcpy (full_path, dir);
-      strcat (full_path, "/");
-      strcat (full_path, cmd);
-
-      if(access(full_path, X_OK) == 0)
-      {
-=======
-	dir = strtok(path_copy, ":");
-	while (dir)
+	else
 	{
-		strcpy(full_path, dir);
-		strcat(full_path, "/");
-		strcat(full_path, cmd);
-		if (access(full_path, X_OK) == 0)
+		path = getenv("PATH");
+		if (!path || path[0] == '\0')
+			return (NULL);
+
+		path_copy = strdup(path);
+		if (!path_copy)
+			return (NULL);
+
+		dir = strtok(path_copy, ":" );
+		while (dir)
 		{
-			free(path_copy);
-			return (full_path);
+			strcpy (full_path, dir);
+			strcat (full_path, "/");
+			strcat (full_path, cmd);
+			if(access(full_path, X_OK) == 0)
+			{
+				free(path_copy);
+				return (full_path);
+			}
+			dir = strtok(NULL, ":");
 		}
-		dir = strtok(NULL, ":");
+		free(path_copy);
+		return (NULL);
 	}
->>>>>>> 81794525d6a9a9cbca3fcdaf48d70236403fc4da
-	free(path_copy);
-	return (NULL);
 }
