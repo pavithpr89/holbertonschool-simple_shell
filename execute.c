@@ -1,9 +1,5 @@
 #include "shell.h"
-#include <unistd.h>
-#include <sys/wait.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
+
 
 void execute_command(char *line)
 {
@@ -11,6 +7,7 @@ void execute_command(char *line)
 	int status;
 	char *argv[64];
 	int i = 0;
+	char *cmd_path;
 
 	argv[i] = strtok(line, " ");
 	while (argv[i])
@@ -27,16 +24,24 @@ void execute_command(char *line)
 		return;
 	}
 
+	
 	if (pid == 0)
 	{
-		if (execve(argv[0], argv, environ) == -1)
+	  cmd_path = find_command(argv[0]);
+		if (cmd_path)
 		{
-			perror("Error");
-			exit(EXIT_FAILURE);
+		  execve(cmd_path, argv, environ);
+		  perror("Error");
+		  free(cmd_path);
+		  exit(EXIT_FAILURE); 
+		  
 		}
+		 
+		
 	}
 	else
 	{
 		wait(&status);
+		
 	}
 }
