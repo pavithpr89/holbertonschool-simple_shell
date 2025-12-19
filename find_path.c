@@ -28,9 +28,7 @@ char *find_command(char *cmd)
 	dir = strtok(path_copy, ":" );
 	while (dir)
 	{
-		strcpy (full_path, dir);
-		strcat (full_path, "/");
-		strcat (full_path, cmd);
+		sprintf(full_path, "%s/%s", dir, cmd);
 		if(access(full_path, X_OK) == 0)
 		{
 			free(path_copy);
