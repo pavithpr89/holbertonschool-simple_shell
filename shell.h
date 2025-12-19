@@ -13,5 +13,6 @@ extern char **environ;
 
 int execute_command(char *line);
 char *find_command(char *cmd);
+char *get_path(char **env);
 
 #endif /* SHELL_H */
