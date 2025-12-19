@@ -20,7 +20,8 @@ char *find_command(char *cmd)
 		return (NULL);
 	}
 
-	path = getenv("PATH");
+	path = get_path(env);
+
 	if (!path || path[0] == '\0')
 		return (NULL);
 
