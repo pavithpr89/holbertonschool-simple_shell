@@ -21,14 +21,6 @@ char *find_command(char *cmd)
 	if (!path_copy)
 		return (NULL);
 
-	path = getenv("PATH");
-	if (!path || path[0] == '\0')
-		return (NULL);
-
-	path_copy = strdup(path);
-	if (!path_copy)
-		return (NULL);
-
 	dir = strtok(path_copy, ":" );
 	while (dir)
 	{
