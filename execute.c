@@ -30,12 +30,14 @@ void execute_command(char *line)
 	if (pid == 0)
 	{
 		cmd_path = find_command(argv[0]);
-		if (cmd_path)
+		if (!cmd_path)
 		{
-			execve(cmd_path, argv, environ);
-			perror("Error");
-			exit(EXIT_FAILURE);
+			fprintf(stderr, "%s: command not found\n", argv[0]);
+			exit(127);
 		}
+		execve(cmd_path, argv, environ);
+		perror("Error");
+		exit(EXIT_FAILURE);
 	}
 	else
 	{
