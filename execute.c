@@ -36,7 +36,6 @@ int execute_command(char *line)
 			exit(127);
 		}
 		execve(cmd_path, argv, environ);
-		perror("./hsh");
 		exit(126);
 	}
 	else
