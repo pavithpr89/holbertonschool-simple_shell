@@ -29,12 +29,14 @@ int execute_command(char *line)
 	if (pid == 0)
 	{
 		char *cmd_path = find_command(argv[0]);
+		
 		if (!cmd_path)
 		{
 			fprintf(stderr, "./hsh: 1: %s: not found\n", argv[0]);
 			exit(127);
 		}
 		execve(cmd_path, argv, environ);
+		perror("./hsh");
 		exit(126);
 	}
 	else
