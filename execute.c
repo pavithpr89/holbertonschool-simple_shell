@@ -31,6 +31,7 @@ int execute_command(char *line)
 		char *cmd_path = find_command(argv[0]);
 		if (!cmd_path)
 		{
+			fprintf(stderr, "DEBUG: cmd_path is NULL\n");
 			fprintf(stderr, "./hsh: 1: %s: not found\n", argv[0]);
 			exit(127);
 		}
