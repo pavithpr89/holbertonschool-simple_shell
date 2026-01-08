@@ -13,6 +13,7 @@ int execute_command(char *line)
 	int i = 0;
 	char *cmd_path;
 
+	/* tokenize the input line */
 	argv[i] = strtok(line, " ");
 	while (argv[i])
 		argv[++i] = strtok(NULL, " ");
@@ -21,29 +22,39 @@ int execute_command(char *line)
 	if (argv[0] == NULL)
 		return (0);
 
+	/* find full executable path */
 	cmd_path = find_command(argv[0]);
 	if (!cmd_path)
 	{
+		/* command not found */
 		fprintf(stderr, "./hsh: 1: %s: not found\n", argv[0]);
 		return (127);
 	}
 
+	/* create child process */
 	pid = fork();
 	if (pid == -1)
 	{
+		/* handle fork failure */
 		perror("fork");
 		return (0);
 	}
 	if (pid == 0)
 	{
+		/* execute child process command */
 		execve(cmd_path, argv, environ);
+
+		/* only reach exit if execve fails */
 		_exit(126);
 	}
 	else
 	{
 		int wstatus;
+
+		/* parent process waits for child process */
 		wait(&wstatus);
 
+		/* retrieve the child process's exit status */
 		if (WIFEXITED(wstatus))
 		{
 			status = WEXITSTATUS(wstatus);
