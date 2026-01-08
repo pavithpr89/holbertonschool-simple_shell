@@ -1,24 +1,65 @@
 .TH SIMPLE_SHELL 1 "December 2025" "Version 1.0" "User Commands"
+
 .SH NAME
-_Simple_Shell \- The "Holberton special" Simple shell project that is meant to tax our brains
-.SH SYNOPSIS
+simple_shell \- The "Holberton special" Simple shell project that is meant to tax our brains
 
 .SH DESCRIPTION
-Edit as needed 
+simple_shell is a simple Unix shell that supports executing commands entered interactively or from a file.
+It handles built-in commands and external programs found in the PATH environment variable.
 
 .TP
-.B It currently supports the following features:
+.B Built-in commands
+The shell currently supports the following built-ins:
 
-f1 - Prints out..........
+.TP
+.B exit
+Exit the shell with the exit status of the last executed command.
+
+.TP
+.B env
+Print all current environment variables.
+
+.TP
+.B External commands
+Any program available in the directories listed in the PATH environment variable
+can be executed by typing its name and arguments. The shell resolves the
+full path internally before executing it.
+
+.SH FEATURES
+.TP
+.B Interactive prompt
+Displays ($) when input is from the terminal.
+
+.TP
+.B Command execution
+Resolves commands using the PATH environment variable and executes them in a child process.
+
+.TP
+.B Error handling
+Prints a message if a command is not found or cannot be executed.
 
 .SH IMPLEMENTATION
-.TP
-The way to use this function, basically works exactly the same way you would use printf().
+The shell works internally as follows:
 
+.TP
+.B Input handling
+Reads a line from standard input using getline().
+
+.TP
+.B Tokenization
+Splits the input line into the command and arguments using strtok().
+
+.TP
+.B Command resolution
+Internal functions search the PATH to find the full path of commands.
+
+.TP
+.B Process management
+Forks a child process to execute the command, waits for it to finish, and retrieves its exit status.
+
+.TP
+.B Memory management
+Allocates and frees memory for input lines and path resolution to prevent leaks.
 
 .SH AUTHOR
 Written by Pavith Raj & Lachie King
-
-.SH SEE ALSO
-
-
